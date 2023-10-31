@@ -1,13 +1,20 @@
 package me.nolanjames.catalogueservice;
 
+import me.nolanjames.catalogueservice.config.BookStoreProperties;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HomeController {
 
+    private final BookStoreProperties bookStoreProperties;
+
+    public HomeController(BookStoreProperties bookStoreProperties) {
+        this.bookStoreProperties = bookStoreProperties;
+    }
+
     @GetMapping("/")
     public String getGreeting() {
-        return "Welcome to the book catalogue";
+        return bookStoreProperties.getGreeting();
     }
 }
